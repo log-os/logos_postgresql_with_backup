@@ -1,0 +1,1 @@
+0 0 * * * /var/lib/logos_backup/pg_backup_rotated.sh -c /var/lib/logos_backup/pg_backup.config >> /var/lib/logos_backup/stdout.log 2>&1

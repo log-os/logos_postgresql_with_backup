@@ -144,7 +144,19 @@ VOLUME /var/lib/postgresql/data
 
 COPY docker-entrypoint.sh /usr/local/bin/
 RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
-ENTRYPOINT ["docker-entrypoint.sh"]
+
+COPY logos-entrypoint.sh /usr/local/bin/
+RUN mkdir -p /var/lib/logos_backup/backups
+VOLUME /var/lib/logos_backup/backups
+
+COPY pg_backup.config /var/lib/logos_backup/ 
+COPY pg_backup_rotated.sh /var/lib/logos_backup/ 
+COPY crontabentry /var/lib/logos_backup/ 
+RUN chmod -v +x /var/lib/logos_backup/pg_backup_rotated.sh
+RUN touch /var/log/cron.log
+RUN crontab /var/lib/logos_backup/crontabentry
+
+ENTRYPOINT ["logos-entrypoint.sh"]
 
 EXPOSE 5432
 CMD ["postgres"]

@@ -1,3 +1,7 @@
+This is a forked git repo from [[the PostgreSQL Docker Community](https://github.com/docker-library/postgres)
+This repo will contain code on top of the official postgres docker image. The code will be there in backup-changes branch.
+For updates look into the official page and pull the commits to this repos on master and then rebase backup-changes branch with master.
+
 # https://github.com/docker-library/postgres
 
 ## Maintained by: [the PostgreSQL Docker Community](https://github.com/docker-library/postgres)
